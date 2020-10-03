@@ -2,6 +2,7 @@ package com.example.employee.EmployeeDetails.controller;
 
 import javax.validation.Valid;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,12 @@ public class EmployeeController {
         if (errors.hasErrors()) {
             return new ResponseEntity<>(errors.getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST);
         }
-        return employeeService.addEmployee(employee);
+        try {
+            return employeeService.addEmployee(employee);
+        } catch (Exception ex) {
+            return new ResponseEntity<>("Email id already exists", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PutMapping("/employees/{id}")

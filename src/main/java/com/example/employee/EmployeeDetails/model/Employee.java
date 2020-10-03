@@ -35,7 +35,7 @@ public class Employee {
 
     @NotEmpty(message = "Email must not be empty")
     @Email(message = "Email must be a valid email address")
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
 
     @NotNull
