@@ -90,8 +90,8 @@ public class EmployeeController {
         return employeeService.patchEmployee(e, id);
     }
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
+    @PostMapping(value = "/authenticate")
+    public ResponseEntity<Object> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
             throws Exception {
 
         try {
